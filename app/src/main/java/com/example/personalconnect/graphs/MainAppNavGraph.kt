@@ -27,12 +27,6 @@ import androidx.navigation.compose.rememberNavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 fun NavGraphBuilder.mainAppNavGraph() {//todo should this method really be here
-//    navigation(
-//        startDestination = BottomBarScreen.Home.route,
-//        route = Graph.MAIN_APP
-//    ) {
-//        createNestedRoutes(navController)
-//    }
     composable(route = Graph.MAIN_APP) {
         val navController: NavHostController = rememberNavController()
         Scaffold(
@@ -58,15 +52,13 @@ fun CreateNestedRoutes(navController: NavHostController) {
         startDestination = BottomBarScreen.Home.route
     ) {
         composable(route = BottomBarScreen.Home.route) {
-//        BottomBar(navController = navController)
+            HomeScreen()
         }
         composable(route = BottomBarScreen.Wallet.route) {
-//        BottomBar(navController = navController)
-            Text(text = "WALLET")
+            WalletScreen()
         }
         composable(route = BottomBarScreen.Identities.route) {
-//        BottomBar(navController = navController)
-            Text(text = "INDENTITY")
+            IdentitiesScreen()
         }
     }
 }
@@ -87,13 +79,12 @@ fun BottomBar(navController: NavHostController) {
     navBackStackEntry?.destination
 
 
-            BottomAppBar() {
-                screens.forEach { screen ->
-                    AddItemToBottomBar(screen, navController)
-                }
-            }
+    BottomAppBar() {
+        screens.forEach { screen ->
+            AddItemToBottomBar(screen, navController)
         }
-//    }
+    }
+}
 
 
 @Composable
@@ -102,7 +93,6 @@ fun RowScope.AddItemToBottomBar(
     navController: NavHostController
 ) {
 
-//    println("nav controller desination route: " +navController.currentDestination?.route)
     NavigationBarItem(
         label = {
             Text(text = screen.title)
@@ -116,7 +106,6 @@ fun RowScope.AddItemToBottomBar(
         selected = navController.currentDestination?.hierarchy?.any {
             it.route == screen.route
         } == true,
-//        unselectedContentColor = LocalContentColor.current.copy(alpha = ContentAlpha.disabled),
         onClick = {
             navController.navigate(screen.route) {
                 popUpTo(navController.graph.findStartDestination().id)

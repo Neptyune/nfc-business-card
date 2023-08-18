@@ -13,8 +13,6 @@ fun RootNavigationGraph(navController: NavHostController) {
         authNavGraph(navController = navController)//set up navigation for login, signup
         mainAppNavGraph()//called each time
     }
-
-
 }
 
 
