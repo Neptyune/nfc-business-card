@@ -47,9 +47,14 @@ android {
 }
 
 dependencies {
+    // Supabase dependencies
+    implementation(platform("io.github.jan-tennert.supabase:bom:1.2.0"))
+    implementation("io.github.jan-tennert.supabase:postgrest-kt")
+    implementation("io.github.jan-tennert.supabase:realtime-kt")
+    implementation("io.ktor:ktor-client-okhttp:2.3.3")
 
-//    implementation("androui")
 
+    // Default dependencies
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
     implementation("androidx.activity:activity-compose:1.7.2")
