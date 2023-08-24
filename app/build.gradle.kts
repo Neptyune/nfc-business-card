@@ -83,6 +83,10 @@ dependencies {
     implementation("io.github.jan-tennert.supabase:realtime-kt")
     implementation("io.ktor:ktor-client-okhttp:2.3.3")
 
+    //Hilt dependencies
+    implementation ("com.google.dagger:hilt-android:2.4.7")
+    annotationProcessor ("com.google.dagger:hilt-compiler:2.4.7")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 
     // Default dependencies
     implementation("androidx.core:core-ktx:1.9.0")
