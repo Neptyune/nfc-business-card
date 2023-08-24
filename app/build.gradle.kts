@@ -1,3 +1,5 @@
+import java.util.Properties
+import com.android.build.api.variant.BuildConfigField
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -18,6 +20,7 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
     }
 
     buildTypes {
@@ -35,6 +38,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true//allows to read local.properties file using build congig class
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.3"
@@ -43,6 +47,32 @@ android {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
+    }
+}
+
+//set value part, reads local.properties file
+androidComponents {
+    onVariants {
+        val properties = Properties()
+        properties.load(project.rootProject.file("local.properties").inputStream())
+
+        it.buildConfigFields.put(
+            "SUPABASE_ANON_KEY", BuildConfigField(
+                "String", "\"" + properties.getProperty("SUPABASE_ANON_KEY") + "\"", ""
+            )
+        )
+        it.buildConfigFields.put(
+            "SECRET", BuildConfigField(
+                "String", "\"" + properties.getProperty("SECRET") + "\"", ""
+            )
+        )
+        it.buildConfigFields.put(
+            "SUPABASE_URL", BuildConfigField(
+                "String", "\"" + properties.getProperty("SUPABASE_URL") + "\"", ""
+            )
+        )
+
+
     }
 }
 
@@ -63,10 +93,9 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
-//    implementation ("androidx.compose.material:material")//nav bar
 
-    implementation("androidx.navigation:navigation-runtime-ktx:2.7.0")//nav bar
-    implementation("androidx.navigation:navigation-compose:2.7.0")
+    implementation("androidx.navigation:navigation-runtime-ktx:2.7.1")//nav bar
+    implementation("androidx.navigation:navigation-compose:2.7.1")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
