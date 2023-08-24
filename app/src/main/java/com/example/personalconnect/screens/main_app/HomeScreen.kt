@@ -1,5 +1,7 @@
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -10,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -25,7 +28,7 @@ fun HomeScreen(){
         //add cards
         items (3) {i ->
             Card(
-                content = "Card"
+                content = "Drippy AF"
             )
 
         }
@@ -38,13 +41,24 @@ fun Card(
 ) {
     Box(
         modifier = Modifier
-            .height(200.dp)
-            .width(200.dp)
-            .padding(10.dp)
+            .padding(40.dp)
             .fillMaxSize()
+            .width(300.dp)
             .background(Color.LightGray)
 
     ) {
-        Text(content)
+        Column (
+             modifier = Modifier
+                 .fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.SpaceEvenly
+        )
+        {
+            Text(text = content)
+            Text("@annietse_")
+            Text("the width is hardcoded rn :( but im working on it TT")
+            Text("u can scroll tho :P")
+        }
+
     }
 }
