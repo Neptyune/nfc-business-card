@@ -79,13 +79,14 @@ androidComponents {
 dependencies {
     // Supabase dependencies
     implementation(platform("io.github.jan-tennert.supabase:bom:1.2.0"))
+    implementation ("io.github.jan-tennert.supabase:storage-kt")
     implementation("io.github.jan-tennert.supabase:postgrest-kt")
     implementation("io.github.jan-tennert.supabase:realtime-kt")
     implementation("io.ktor:ktor-client-okhttp:2.3.3")
 
     //Hilt dependencies
-    implementation ("com.google.dagger:hilt-android:2.4.7")
-    annotationProcessor ("com.google.dagger:hilt-compiler:2.4.7")
+    implementation ("com.google.dagger:hilt-android:2.35")
+    annotationProcessor ("com.google.dagger:hilt-compiler:2.35")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 
     // Default dependencies
